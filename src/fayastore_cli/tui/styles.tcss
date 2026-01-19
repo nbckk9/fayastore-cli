@@ -1,0 +1,271 @@
+/* Fayastore TUI Styles */
+
+/* Global styles */
+Screen {
+    background: $surface;
+}
+
+/* Header customization */
+Header {
+    dock: top;
+    height: 3;
+    background: $primary;
+}
+
+/* Footer customization */
+Footer {
+    dock: bottom;
+    height: 1;
+}
+
+/* Browser screen layout */
+#browser-container {
+    layout: horizontal;
+    height: 100%;
+}
+
+#collections-panel {
+    width: 30%;
+    min-width: 25;
+    max-width: 40;
+    border: solid $primary;
+    background: $surface;
+}
+
+#documents-panel {
+    width: 70%;
+    border: solid $secondary;
+    background: $surface;
+}
+
+/* Panel headers */
+.panel-header {
+    dock: top;
+    height: 3;
+    padding: 1;
+    background: $primary-darken-2;
+    text-style: bold;
+}
+
+.panel-content {
+    height: 100%;
+    padding: 0 1;
+}
+
+/* Collection tree */
+#collection-tree {
+    height: 100%;
+    scrollbar-gutter: stable;
+}
+
+#collection-tree > .tree--guides {
+    color: $text-muted;
+}
+
+#collection-tree > .tree--cursor {
+    background: $accent;
+    color: $text;
+}
+
+/* Document table */
+#document-table {
+    height: 100%;
+}
+
+#document-table > .datatable--header {
+    background: $primary-darken-1;
+    text-style: bold;
+}
+
+#document-table > .datatable--cursor {
+    background: $accent;
+}
+
+/* Status bar */
+#status-bar {
+    dock: bottom;
+    height: 1;
+    padding: 0 1;
+    background: $surface-darken-1;
+    color: $text-muted;
+}
+
+/* Viewer screen */
+#viewer-container {
+    padding: 1;
+}
+
+#document-path {
+    height: 3;
+    padding: 1;
+    background: $primary-darken-2;
+    text-style: bold;
+}
+
+#document-content {
+    height: 100%;
+    padding: 1;
+    border: solid $secondary;
+    background: $surface;
+    overflow-y: auto;
+}
+
+/* Editor screen */
+#editor-container {
+    padding: 1;
+}
+
+#editor-header {
+    height: 3;
+    padding: 1;
+    background: $primary-darken-2;
+}
+
+#json-editor {
+    height: 100%;
+    border: solid $secondary;
+}
+
+#editor-buttons {
+    dock: bottom;
+    height: 5;
+    padding: 1;
+    align: center middle;
+}
+
+#editor-buttons Button {
+    margin: 0 1;
+}
+
+/* Query screen */
+#query-container {
+    padding: 1;
+    height: 100%;
+}
+
+#query-inputs {
+    height: auto;
+    padding: 1;
+    border: solid $secondary;
+    margin-bottom: 1;
+}
+
+.input-row {
+    height: 3;
+    margin-bottom: 1;
+}
+
+.input-label {
+    width: 8;
+    height: 3;
+    content-align: left middle;
+    padding: 0 1;
+}
+
+.input-row Input {
+    width: 1fr;
+    height: 3;
+}
+
+.button-row {
+    height: 3;
+    margin-top: 1;
+}
+
+.button-row Button {
+    margin-right: 1;
+}
+
+#results-table {
+    height: 1fr;
+    border: solid $secondary;
+}
+
+#query-status {
+    height: 1;
+    padding: 0 1;
+    background: $surface-darken-1;
+    color: $text-muted;
+}
+
+/* Help screen */
+#help-container {
+    padding: 2;
+    align: center middle;
+}
+
+#help-content {
+    width: 60;
+    height: auto;
+    padding: 2;
+    border: double $primary;
+    background: $surface;
+}
+
+#help-title {
+    text-align: center;
+    text-style: bold;
+    padding-bottom: 1;
+}
+
+.help-section {
+    margin-top: 1;
+}
+
+.help-section-title {
+    text-style: bold;
+    color: $primary;
+}
+
+/* Confirmation dialog */
+#confirm-dialog {
+    align: center middle;
+}
+
+#confirm-content {
+    width: 50;
+    height: auto;
+    padding: 2;
+    border: double $warning;
+    background: $surface;
+}
+
+#confirm-buttons {
+    margin-top: 2;
+    align: center middle;
+}
+
+#confirm-buttons Button {
+    margin: 0 1;
+}
+
+/* Loading indicator */
+#loading-text {
+    width: 100%;
+    height: 100%;
+    content-align: center middle;
+    text-style: italic;
+    color: $text-muted;
+}
+
+/* Error message */
+.error-message {
+    color: $error;
+    padding: 1;
+    text-style: bold;
+}
+
+/* Success message */
+.success-message {
+    color: $success;
+    padding: 1;
+}
+
+/* Empty state */
+.empty-state {
+    width: 100%;
+    height: 100%;
+    content-align: center middle;
+    color: $text-muted;
+    text-style: italic;
+}
