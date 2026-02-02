@@ -324,7 +324,6 @@ Button {
 
 Button:focus {
     outline: solid $accent;
-    outline-offset: 1;
 }
 
 /* Input focus state */
