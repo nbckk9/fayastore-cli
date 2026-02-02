@@ -11,7 +11,6 @@ Header {
     height: 2;
     background: $surface-lighten-1;
     border-bottom: solid $accent;
-    border-bottom-height: 1;
 }
 
 /* Footer - Compact with key hints */
@@ -129,7 +128,6 @@ Footer {
     padding: 1;
     background: $surface-darken-1;
     border: solid $surface-lighten-2;
-    border-radius: 4;
     margin: 1 0;
 }
 
@@ -150,7 +148,6 @@ Footer {
 #json-editor {
     height: 100%;
     border: solid $surface-lighten-2;
-    border-radius: 4;
 }
 
 #editor-buttons {
@@ -175,7 +172,6 @@ Footer {
     height: auto;
     padding: 1;
     border: solid $accent;
-    border-radius: 4;
     background: $surface-darken-1;
     margin-bottom: 1;
 }
@@ -212,7 +208,6 @@ Footer {
 #results-table {
     height: 1fr;
     border: solid $surface-lighten-2;
-    border-radius: 4;
 }
 
 #query-status {
@@ -234,7 +229,6 @@ Footer {
     max-height: 80;
     padding: 2;
     border: solid $accent;
-    border-radius: 8;
     background: $surface;
     overflow-y: auto;
 }
@@ -261,7 +255,6 @@ Footer {
 .help-key {
     background: $surface-lighten-1;
     padding: 0 2;
-    border-radius: 2;
     margin-right: 0;
     min-width: 8;
     text-align: center;
@@ -281,7 +274,6 @@ Footer {
     height: auto;
     padding: 2;
     border: solid $warning;
-    border-radius: 8;
     background: $surface;
 }
 
@@ -328,7 +320,6 @@ Footer {
 /* Button variants */
 Button {
     border: none;
-    border-radius: 4;
 }
 
 Button:focus {
@@ -341,16 +332,8 @@ Input:focus, TextArea:focus {
     border: solid $accent;
 }
 
-/* Scrollbar styling */
-ScrollBar {
-    background: $surface-darken-1;
-    slider-color: $accent;
-    slider-run-color: $surface-lighten-1;
-}
-
 /* Toast notifications */
 Toast {
     background: $surface-lighten-1;
     border: solid $accent;
-    border-radius: 4;
 }
