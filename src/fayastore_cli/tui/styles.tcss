@@ -1,55 +1,62 @@
-/* Fayastore TUI Styles */
+/* Fayastore TUI - Firefoo-inspired Design */
+/* Based on Textual's dark theme with custom enhancements */
 
-/* Global styles */
 Screen {
     background: $surface;
 }
 
-/* Header customization */
+/* Header - Clean, minimal design */
 Header {
     dock: top;
-    height: 3;
-    background: $primary;
+    height: 2;
+    background: $surface-lighten-1;
+    border-bottom: solid $accent;
+    border-bottom-height: 1;
 }
 
-/* Footer customization */
+/* Footer - Compact with key hints */
 Footer {
     dock: bottom;
     height: 1;
+    background: $surface-darken-2;
+    color: $text-muted;
 }
 
-/* Browser screen layout */
+/* Main browser layout */
 #browser-container {
     layout: horizontal;
     height: 100%;
 }
 
+/* Collections panel - Left sidebar */
 #collections-panel {
-    width: 30%;
-    min-width: 25;
-    max-width: 40;
-    border: solid $primary;
-    background: $surface;
+    width: 28%;
+    min-width: 22;
+    max-width: 35;
+    border: solid $accent;
+    border-right: solid $surface-lighten-2;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    background: $surface-darken-1;
 }
 
+/* Documents panel - Main content */
 #documents-panel {
-    width: 70%;
-    border: solid $secondary;
+    width: 72%;
+    border: solid $surface-lighten-2;
     background: $surface;
 }
 
 /* Panel headers */
 .panel-header {
     dock: top;
-    height: 3;
-    padding: 1;
-    background: $primary-darken-2;
-    text-style: bold;
-}
-
-.panel-content {
-    height: 100%;
+    height: 2;
     padding: 0 1;
+    background: $surface-lighten-1;
+    text-style: bold;
+    content-align: left middle;
+    color: $text;
 }
 
 /* Collection tree */
@@ -59,12 +66,17 @@ Footer {
 }
 
 #collection-tree > .tree--guides {
-    color: $text-muted;
+    color: $surface-lighten-3;
 }
 
 #collection-tree > .tree--cursor {
     background: $accent;
     color: $text;
+    text-style: bold;
+}
+
+#collection-tree > .tree--highlight {
+    background: $accent-darken-1;
 }
 
 /* Document table */
@@ -73,12 +85,18 @@ Footer {
 }
 
 #document-table > .datatable--header {
-    background: $primary-darken-1;
+    background: $surface-lighten-1;
     text-style: bold;
+    color: $text;
 }
 
 #document-table > .datatable--cursor {
     background: $accent;
+    color: $text;
+}
+
+#document-table > .datatable--row-hover {
+    background: $accent-darken-2;
 }
 
 /* Status bar */
@@ -86,55 +104,65 @@ Footer {
     dock: bottom;
     height: 1;
     padding: 0 1;
-    background: $surface-darken-1;
+    background: $surface-darken-2;
     color: $text-muted;
+    text-style: italic;
 }
 
 /* Viewer screen */
 #viewer-container {
     padding: 1;
+    height: 100%;
 }
 
 #document-path {
-    height: 3;
-    padding: 1;
-    background: $primary-darken-2;
+    height: 2;
+    padding: 0 1;
+    background: $surface-lighten-1;
     text-style: bold;
+    border-bottom: solid $accent;
+    content-align: left middle;
 }
 
 #document-content {
-    height: 100%;
+    height: 1fr;
     padding: 1;
-    border: solid $secondary;
-    background: $surface;
-    overflow-y: auto;
+    background: $surface-darken-1;
+    border: solid $surface-lighten-2;
+    border-radius: 4;
+    margin: 1 0;
 }
 
 /* Editor screen */
 #editor-container {
     padding: 1;
+    height: 100%;
 }
 
 #editor-header {
-    height: 3;
-    padding: 1;
-    background: $primary-darken-2;
+    height: 2;
+    padding: 0 1;
+    background: $surface-lighten-1;
+    text-style: bold;
+    border-bottom: solid $accent;
 }
 
 #json-editor {
     height: 100%;
-    border: solid $secondary;
+    border: solid $surface-lighten-2;
+    border-radius: 4;
 }
 
 #editor-buttons {
     dock: bottom;
-    height: 5;
+    height: 3;
     padding: 1;
     align: center middle;
 }
 
 #editor-buttons Button {
     margin: 0 1;
+    min-width: 12;
 }
 
 /* Query screen */
@@ -146,7 +174,9 @@ Footer {
 #query-inputs {
     height: auto;
     padding: 1;
-    border: solid $secondary;
+    border: solid $accent;
+    border-radius: 4;
+    background: $surface-darken-1;
     margin-bottom: 1;
 }
 
@@ -156,15 +186,18 @@ Footer {
 }
 
 .input-label {
-    width: 8;
+    width: 10;
     height: 3;
     content-align: left middle;
     padding: 0 1;
+    text-style: bold;
+    color: $text;
 }
 
 .input-row Input {
     width: 1fr;
     height: 3;
+    border: solid $surface-lighten-2;
 }
 
 .button-row {
@@ -178,13 +211,14 @@ Footer {
 
 #results-table {
     height: 1fr;
-    border: solid $secondary;
+    border: solid $surface-lighten-2;
+    border-radius: 4;
 }
 
 #query-status {
     height: 1;
     padding: 0 1;
-    background: $surface-darken-1;
+    background: $surface-darken-2;
     color: $text-muted;
 }
 
@@ -195,17 +229,23 @@ Footer {
 }
 
 #help-content {
-    width: 60;
+    width: 55;
     height: auto;
+    max-height: 80;
     padding: 2;
-    border: double $primary;
+    border: solid $accent;
+    border-radius: 8;
     background: $surface;
+    overflow-y: auto;
 }
 
 #help-title {
     text-align: center;
     text-style: bold;
+    color: $accent;
     padding-bottom: 1;
+    border-bottom: solid $surface-lighten-2;
+    margin-bottom: 1;
 }
 
 .help-section {
@@ -214,7 +254,21 @@ Footer {
 
 .help-section-title {
     text-style: bold;
-    color: $primary;
+    color: $accent;
+    margin-bottom: 0;
+}
+
+.help-key {
+    background: $surface-lighten-1;
+    padding: 0 2;
+    border-radius: 2;
+    margin-right: 0;
+    min-width: 8;
+    text-align: center;
+}
+
+.help-action {
+    margin-left: 1;
 }
 
 /* Confirmation dialog */
@@ -226,7 +280,8 @@ Footer {
     width: 50;
     height: auto;
     padding: 2;
-    border: double $warning;
+    border: solid $warning;
+    border-radius: 8;
     background: $surface;
 }
 
@@ -268,4 +323,34 @@ Footer {
     content-align: center middle;
     color: $text-muted;
     text-style: italic;
+}
+
+/* Button variants */
+Button {
+    border: none;
+    border-radius: 4;
+}
+
+Button:focus {
+    outline: solid $accent;
+    outline-offset: 1;
+}
+
+/* Input focus state */
+Input:focus, TextArea:focus {
+    border: solid $accent;
+}
+
+/* Scrollbar styling */
+ScrollBar {
+    background: $surface-darken-1;
+    slider-color: $accent;
+    slider-run-color: $surface-lighten-1;
+}
+
+/* Toast notifications */
+Toast {
+    background: $surface-lighten-1;
+    border: solid $accent;
+    border-radius: 4;
 }

@@ -3,6 +3,7 @@
 import json
 from typing import TYPE_CHECKING, Any, Dict, List, Optional
 
+from rich.panel import Panel
 from rich.text import Text
 from textual.message import Message
 from textual.widgets import DataTable
@@ -23,6 +24,13 @@ class DocumentRowSelected(Message):
 class DocumentTable(DataTable):
     """A data table for displaying Firestore documents."""
 
+    EMPTY_STATES = {
+        "default": "No documents in this collection",
+        "loading": "Loading documents...",
+        "error": "Error loading documents",
+        "filtered": "No documents match your filter",
+    }
+
     def __init__(
         self,
         service: "FirestoreService",
@@ -32,22 +40,49 @@ class DocumentTable(DataTable):
         self.service = service
         self._current_collection: Optional[str] = None
         self._documents: List[Dict[str, Any]] = []
+        self._empty_state: str = self.EMPTY_STATES["default"]
         self.cursor_type = "row"
         self.zebra_stripes = True
 
-    def load_collection(self, collection_path: str, limit: int = 50) -> None:
+    def set_empty_state(self, state: str = "default", message: Optional[str] = None) -> None:
+        """Set the empty state message."""
+        if message:
+            self._empty_state = message
+        else:
+            self._empty_state = self.EMPTY_STATES.get(state, self.EMPTY_STATES["default"])
+
+    def load_collection(
+        self,
+        collection_path: str,
+        limit: int = 50,
+        show_loading: bool = True,
+    ) -> None:
         """Load documents from a collection."""
         self._current_collection = collection_path
-        self.clear(columns=True)
         self._documents = []
+
+        if show_loading:
+            self.set_empty_state("loading")
+            self.clear(columns=True)
+            self.add_column("Status", key="status")
+            self.add_row(
+                Text(self.EMPTY_STATES["loading"], style="italic dim")
+            )
+            return
+
+        self.clear(columns=True)
 
         try:
             docs = self.service.list_documents(collection_path, limit=limit)
             self._documents = docs
 
             if not docs:
+                self.set_empty_state("default")
                 self.add_column("Message", key="message")
-                self.add_row(Text("No documents found", style="dim italic"))
+                self.add_row(
+                    Text("📭 No documents found", style="dim italic"),
+                    Text("This collection is empty. Create a document to get started.", style="dim"),
+                )
                 return
 
             # Determine columns from all documents
@@ -63,9 +98,10 @@ class DocumentTable(DataTable):
             if len(columns) > max_columns:
                 columns = columns[:max_columns]
 
-            # Add columns
+            # Add columns with icons
             for col in columns:
-                self.add_column(col, key=col)
+                icon = "🔑" if col == "id" else "📄"
+                self.add_column(f"{icon} {col}", key=col)
 
             # Add rows
             for doc in docs:
@@ -76,8 +112,12 @@ class DocumentTable(DataTable):
                 self.add_row(*row_values, key=doc.get("id", str(len(self._documents))))
 
         except Exception as e:
+            self.set_empty_state("error")
+            self.clear(columns=True)
             self.add_column("Error", key="error")
-            self.add_row(Text(f"Error loading documents: {e}", style="red"))
+            self.add_row(
+                Text(f"❌ Error loading documents: {e}", style="red")
+            )
 
     def _format_cell_value(self, value: Any, max_length: int = 40) -> Text:
         """Format a value for display in a table cell."""
@@ -144,4 +184,35 @@ class DocumentTable(DataTable):
     def refresh_data(self) -> None:
         """Refresh the current collection data."""
         if self._current_collection:
-            self.load_collection(self._current_collection)
+            self.load_collection(self._current_collection, show_loading=False)
+
+    def filter_documents(self, filter_fn) -> None:
+        """Filter documents based on a function."""
+        if not self._documents:
+            return
+
+        filtered = [doc for doc in self._documents if filter_fn(doc)]
+        self._documents = filtered
+
+        if not filtered:
+            self.set_empty_state("filtered")
+            self.clear(rows=True)
+            self.add_row(
+                Text("🔍 No matching documents", style="dim italic"),
+                Text("Try a different search term.", style="dim"),
+            )
+        else:
+            self.refresh_rows()
+
+    def refresh_rows(self) -> None:
+        """Refresh table rows with current documents."""
+        if not self._documents:
+            return
+
+        self.clear(rows=True)
+        for doc in self._documents:
+            row_values = []
+            for col in self.columns.keys():
+                value = doc.get(col)
+                row_values.append(self._format_cell_value(value))
+            self.add_row(*row_values, key=doc.get("id", str(len(row_values))))

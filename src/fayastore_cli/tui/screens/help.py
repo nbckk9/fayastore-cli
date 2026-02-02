@@ -8,29 +8,30 @@ from textual.widgets import Static
 
 
 HELP_TEXT = """\
-[bold cyan]Fayastore TUI - Keyboard Shortcuts[/bold cyan]
+[bold cyan]Fayastore TUI[/bold cyan]
+[dim]Keyboard shortcuts[/dim]
 
-[bold]Navigation[/bold]
-  [green]↑/↓[/green]     Navigate items
-  [green]Enter[/green]   Select/View item
-  [green]Tab[/green]     Switch panels
-  [green]Escape[/green]  Go back / Close
+[bold yellow]Navigation[/bold yellow]
+  [reverse]↑[/reverse] [reverse]↓[/reverse]     Navigate items
+  [reverse]Enter[/reverse]       Select/View item
+  [reverse]Tab[/reverse]         Switch panels
+  [reverse]Escape[/reverse]      Go back / Close
 
-[bold]Document Operations[/bold]
-  [green]n[/green]       New document
-  [green]e[/green]       Edit selected document
-  [green]d[/green]       Delete selected document
-  [green]c[/green]       Copy document JSON (in viewer)
+[bold yellow]Document Operations[/bold yellow]
+  [reverse]n[/reverse]           New document
+  [reverse]e[/reverse]           Edit selected document
+  [reverse]d[/reverse]           Delete selected document
+  [reverse]c[/reverse]           Copy JSON (viewer)
 
-[bold]Collection Operations[/bold]
-  [green]r[/green]       Refresh current view
-  [green]/[/green]       Search / Query builder
+[bold yellow]Collection Operations[/bold yellow]
+  [reverse]r[/reverse]           Refresh view
+  [reverse]/[/reverse]           Search / Query
 
-[bold]General[/bold]
-  [green]?[/green]       Show this help
-  [green]q[/green]       Quit application
+[bold yellow]General[/bold yellow]
+  [reverse]?[/reverse]           Show help
+  [reverse]q[/reverse]           Quit
 
-[dim]Press Escape or ? to close this help[/dim]
+[dim]Press Escape or ? to close[/dim]
 """
 
 
